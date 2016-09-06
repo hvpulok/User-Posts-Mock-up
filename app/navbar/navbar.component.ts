@@ -1,10 +1,13 @@
 
 import {Component} from "angular2/core";
+import {ROUTER_DIRECTIVES} from "angular2/router";
+
 
 
 @Component({
     selector: 'my-navbar',
-    templateUrl:"app/navbar/navbar.html"
+    directives: [ROUTER_DIRECTIVES],
+    templateUrl:"app/navbar/navbar.html",
 })
 
 export class NavbarComponent{

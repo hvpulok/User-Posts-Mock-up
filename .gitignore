@@ -38,3 +38,15 @@ jspm_packages
 
 # Miscs
 .idea
+/app/navbar/navbar.component.js
+/app/navbar/navbar.component.js.map
+/app/app.component.js
+/app/app.component.js.map
+/app/boot.js.map
+/app/boot.js
+/app/home/home.component.js
+/app/home/home.component.js.map
+/app/posts/posts.component.js
+/app/posts/posts.component.js.map
+/app/users/users.component.js
+/app/users/users.component.js.map
