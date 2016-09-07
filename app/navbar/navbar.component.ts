@@ -1,6 +1,6 @@
 
 import {Component} from "angular2/core";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {ROUTER_DIRECTIVES, Router} from "angular2/router";
 
 
 
@@ -11,6 +11,12 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 })
 
 export class NavbarComponent{
+    constructor(private _router: Router){
+    }
 
+    isCurrentRoute(route){
+        var instruction = this._router.generate(route);
+        return this._router.isRouteActive(instruction);
+    }
 }
 

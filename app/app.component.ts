@@ -36,7 +36,10 @@ import {HomeComponent} from "./home/home.component";
     directives: [HomeComponent ,NavbarComponent, PostsComponent, UsersComponent, ROUTER_DIRECTIVES],
     template: `
         <my-navbar></my-navbar>
-        <router-outlet></router-outlet>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+        
         
 `,
 
