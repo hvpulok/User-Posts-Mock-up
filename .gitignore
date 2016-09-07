@@ -52,3 +52,5 @@ jspm_packages
 /app/users/users.component.js.map
 /app/users/users.service.js
 /app/users/users.service.js.map
+/app/users/new/adduser.component.js
+/app/users/new/adduser.component.js.map

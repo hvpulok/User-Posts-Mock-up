@@ -5,6 +5,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {PostsComponent} from "./posts/posts.component";
 import {UsersComponent} from "./users/users.component";
 import {HomeComponent} from "./home/home.component";
+import {AddUserComponent} from "./users/new/adduser.component";
 
 @RouteConfig([
     {
@@ -23,6 +24,11 @@ import {HomeComponent} from "./home/home.component";
         component: UsersComponent,
     },
     {
+        path: '/users/new',
+        name: 'AddUser',
+        component: AddUserComponent,
+    },
+    {
         path: '/*other',
         name: 'Other',
         redirectTo: ['Posts'],
@@ -33,7 +39,10 @@ import {HomeComponent} from "./home/home.component";
 
 @Component({
     selector: 'my-app',
-    directives: [HomeComponent ,NavbarComponent, PostsComponent, UsersComponent, ROUTER_DIRECTIVES],
+    directives: [
+        ROUTER_DIRECTIVES, HomeComponent ,NavbarComponent,
+        PostsComponent, UsersComponent, AddUserComponent,
+    ],
     template: `
         <my-navbar></my-navbar>
         <div class="container">
