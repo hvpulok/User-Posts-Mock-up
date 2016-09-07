@@ -50,3 +50,5 @@ jspm_packages
 /app/posts/posts.component.js.map
 /app/users/users.component.js
 /app/users/users.component.js.map
+/app/users/users.service.js
+/app/users/users.service.js.map
