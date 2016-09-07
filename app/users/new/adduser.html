@@ -3,20 +3,51 @@
         <h1>Add New User Information</h1>
     </div>
     <div class="well col-md-8 col-md-offset-2">
-        <form>
+        <form [ngFormModel]="addUserForm" (ngSubmit)="addUser()">
+        <!--"addUserFrom" is control Group defined in adduser component file-->
             <fieldset>
                 <legend>User</legend>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="name">
+                <div class="form-group" [ngClass]="{'has-error':((username.touched && username.errors) ? true : false)}">
+                    <label for="username">Username</label>
+                    <input
+                            type="text" class="form-control" id="username" placeholder="username"
+                            ngControl="username"
+                            #username = "ngForm"
+                    >
+                    <div *ngIf="username.touched && username.errors">
+                        <div
+                                *ngIf="username.errors.required"
+                                class="alert alert-danger"
+                        >username is required
+                        </div>
+                        <div
+                                *ngIf="username.errors.cannotContainSpace"
+                                class="alert alert-danger"
+                        >username cannot contain space
+                        </div>
+                    </div>
+
+
                 </div>
-                <div class="form-group">
+
+                <div class="form-group" [ngClass]="{'has-error':((email.touched && email.errors) ? true : false)}">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="email">
+                    <input
+                            type="email" class="form-control" id="email" placeholder="email"
+                            ngControl="email"
+                            #email = "ngForm"
+                    >
+                    <div *ngIf="email.touched && email.errors">
+                        <div
+                            *ngIf="email.errors.invalidEmail"
+                            class="alert alert-danger"
+                        >Please input valid email id
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="phone">
+                    <input type="tel" class="form-control" id="phone" placeholder="phone number (optional)">
                 </div>
             </fieldset>
 
@@ -39,7 +70,7 @@
                     <input type="text" class="form-control" id="zip-code" placeholder="Zip code">
                 </div>
             </fieldset>
-            <button type="submit" class="btn btn-info">Save</button>
+            <button type="submit" class="btn btn-info" [disabled]= "!addUserForm.valid">Save</button>
         </form>
     </div>
 </div>
