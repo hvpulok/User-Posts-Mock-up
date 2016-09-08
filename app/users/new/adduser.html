@@ -3,7 +3,7 @@
         <h1>{{title}}</h1>
     </div>
     <div class="well col-md-8 col-md-offset-2">
-        <form [ngFormModel]="addUserForm" (ngSubmit)="addUser()">
+        <form [ngFormModel]="addUserForm" (ngSubmit)="save()">
         <!--"addUserFrom" is control Group defined in adduser component file-->
             <fieldset>
                 <legend>User</legend>

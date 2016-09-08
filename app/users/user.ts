@@ -6,15 +6,17 @@ export class Address {
 }
 
 export class User{
+    id: number;
     username: string;
     email: string;
     phone: string;
     address = new Address();
 
     constructor (
-        username: string, email: string, phone?: string, street?: string,
+        id: number, username: string, email: string, phone?: string, street?: string,
         suite?: string, city?: string, zipcode?: string
     ){
+        this.id = id;
         this.username = username;
         this.email = email;
         this.phone = phone;

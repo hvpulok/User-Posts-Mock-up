@@ -60,16 +60,16 @@ export class AddUserComponent implements OnInit{
             })
     }
 
-    addUser(){
+    save(){
         var result;
-        console.log(this.addUserForm.value);
+        if (this.user.id)
+            result = this._usersService.updateUser(this.user);
+        else
+            result = this._usersService.addUser(this.addUserForm.value);
 
-        result = this._usersService.addUser(this.addUserForm.value);
-
-        result.subscribe(feedback => {
-            console.log(feedback);
+        result.subscribe(response => {
+            console.log(response);
             this._router.navigate(['Users'])
-
         })
     }
 
