@@ -47,7 +47,10 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="phone number (optional)">
+                    <input
+                            type="tel" class="form-control" id="phone" placeholder="phone number (optional)"
+                            ngControl="phone"
+                    >
                 </div>
             </fieldset>
 
@@ -55,19 +58,31 @@
                 <legend>Address</legend>
                 <div class="form-group">
                     <label for="street">Street</label>
-                    <input type="text" class="form-control" id="street" placeholder="street">
+                    <input
+                            type="text" class="form-control" id="street" placeholder="street"
+                            ngControl="street"
+                    >
                 </div>
                 <div class="form-group">
-                    <label for="suit">Suit</label>
-                    <input type="text" class="form-control" id="suit" placeholder="suit">
+                    <label for="suite">Suit</label>
+                    <input
+                            type="text" class="form-control" id="suite" placeholder="suite"
+                            ngControl="suite"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="city">
+                    <input
+                            type="text" class="form-control" id="city" placeholder="city"
+                            ngControl="city"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="zip-code">Zip code</label>
-                    <input type="text" class="form-control" id="zip-code" placeholder="Zip code">
+                    <input
+                            type="text" class="form-control" id="zip-code" placeholder="Zip code"
+                            ngControl="zipcode"
+                    >
                 </div>
             </fieldset>
             <button type="submit" class="btn btn-info" [disabled]= "!addUserForm.valid">Save</button>
