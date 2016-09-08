@@ -1,6 +1,6 @@
 <div class="row">
     <div class="well col-md-8 col-md-offset-2">
-        <h1>Add New User Information</h1>
+        <h1>{{title}}</h1>
     </div>
     <div class="well col-md-8 col-md-offset-2">
         <form [ngFormModel]="addUserForm" (ngSubmit)="addUser()">
@@ -13,6 +13,7 @@
                             type="text" class="form-control" id="username" placeholder="username"
                             ngControl="username"
                             #username = "ngForm"
+                            [(ngModel)]="user.username"
                     >
                     <div *ngIf="username.touched && username.errors">
                         <div
@@ -36,6 +37,7 @@
                             type="email" class="form-control" id="email" placeholder="email"
                             ngControl="email"
                             #email = "ngForm"
+                            [(ngModel)]="user.email"
                     >
                     <div *ngIf="email.touched && email.errors">
                         <div
@@ -50,6 +52,7 @@
                     <input
                             type="tel" class="form-control" id="phone" placeholder="phone number (optional)"
                             ngControl="phone"
+                            [(ngModel)]="user.phone"
                     >
                 </div>
             </fieldset>
@@ -61,6 +64,7 @@
                     <input
                             type="text" class="form-control" id="street" placeholder="street"
                             ngControl="street"
+                            [(ngModel)]="user.address.street"
                     >
                 </div>
                 <div class="form-group">
@@ -68,6 +72,7 @@
                     <input
                             type="text" class="form-control" id="suite" placeholder="suite"
                             ngControl="suite"
+                            [(ngModel)]="user.address.suite"
                     >
                 </div>
                 <div class="form-group">
@@ -75,6 +80,7 @@
                     <input
                             type="text" class="form-control" id="city" placeholder="city"
                             ngControl="city"
+                            [(ngModel)]="user.address.city"
                     >
                 </div>
                 <div class="form-group">
@@ -82,6 +88,7 @@
                     <input
                             type="text" class="form-control" id="zip-code" placeholder="Zip code"
                             ngControl="zipcode"
+                            [(ngModel)]="user.address.zipcode"
                     >
                 </div>
             </fieldset>

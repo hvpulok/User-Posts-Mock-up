@@ -8,11 +8,17 @@
         <th>Name</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Edit / Delete</th>
     </tr>
     <tr *ngFor="#user of _users">
         <td>{{user.name}}</td>
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
+        <td>
+            <a [routerLink]="['EditUser', { id: user.id }]">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+        </td>
     </tr>
 </table>
 

@@ -57,6 +57,11 @@ System.register(['angular2/core', "angular2/router", "./navbar/navbar.component"
                             component: users_component_1.UsersComponent,
                         },
                         {
+                            path: '/users/:id/edit',
+                            name: 'EditUser',
+                            component: adduser_component_1.AddUserComponent,
+                        },
+                        {
                             path: '/users/new',
                             name: 'AddUser',
                             component: adduser_component_1.AddUserComponent,

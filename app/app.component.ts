@@ -24,6 +24,11 @@ import {AddUserComponent} from "./users/new/adduser.component";
         component: UsersComponent,
     },
     {
+        path: '/users/:id/edit',
+        name: 'EditUser',
+        component: AddUserComponent,
+    },
+    {
         path: '/users/new',
         name: 'AddUser',
         component: AddUserComponent,
