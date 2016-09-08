@@ -18,7 +18,7 @@ export class AddUserComponent {
 
     constructor(fb: FormBuilder,
                 private _usersService: UsersService,
-                private _router: Router,
+                private _router: Router
 
     ){
         this.addUserForm = fb.group({
