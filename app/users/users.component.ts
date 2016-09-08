@@ -24,5 +24,24 @@ export class UsersComponent implements OnInit{
                 this._users = users;
             } );
     }
+
+    deleteUser(user){
+        var index = this._users.indexOf(user);
+        // Here, with the splice method, we remove 1 object
+        // at the given index to update the view
+        this._users.splice(index, 1);
+
+        this._usersService.deleteUser(user.id)
+            .subscribe(null,
+                err=> {
+                    alert("Could not delete the user");
+                    // Revert the view back to its original state
+                    // by putting the user object at the index
+                    // it used to be.
+                    this._users.splice(index, 0, user);
+                })
+
+    }
+
 }
 

@@ -16,7 +16,7 @@ import {User} from "../user";
 
 export class AddUserComponent implements OnInit{
     addUserForm: ControlGroup;
-    user = new User("","","","","","","");
+    user = new User(0,"","","","","","","");
 
     title = "Add New User Information"
 
