@@ -2,12 +2,13 @@
 import {Component, OnInit} from "angular2/core";
 import {PostsService} from "./posts.service";
 import {HTTP_PROVIDERS} from "angular2/http";
+import {SpinnerComponent} from "../shared/spinner.component";
 
 
 @Component({
     selector: 'my-posts',
     templateUrl:"app/posts/posts.html",
-    directives: [],
+    directives: [SpinnerComponent],
     providers: [PostsService, HTTP_PROVIDERS]
 })
 

@@ -4,11 +4,12 @@ import {UsersService} from "./users.service";
 import {HTTP_PROVIDERS} from "angular2/http";
 import {OnInit} from "angular2/core";
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {SpinnerComponent} from "../shared/spinner.component";
 
 @Component({
     selector: 'my-users',
     templateUrl:"app/users/users.html",
-    directives: [ROUTER_DIRECTIVES],
+    directives: [SpinnerComponent , ROUTER_DIRECTIVES],
     providers: [UsersService, HTTP_PROVIDERS],
 })
 
