@@ -2,6 +2,9 @@
 
 <a class="btn btn-success" [routerLink]="['AddUser']">Add User</a>
 <hr>
+<div *ngIf="isLoading">
+    Getting data...<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+</div>
 <table class="table table-hover table-bordered">
 
     <tr>

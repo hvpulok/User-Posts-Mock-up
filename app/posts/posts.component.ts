@@ -16,11 +16,13 @@ export class PostsComponent implements OnInit{
 
     // define a client side local array to hold retrieved posts
     private _posts = [];
+    isLoading: boolean = true; //set isLoading to false to show loader icon
 
     ngOnInit(){
         this._postsService.getAllPosts()
             .subscribe(posts =>{
-                console.log(posts);
+                this.isLoading =false;  //set isLoading to false to hide loader icon
+                // console.log(posts);
                 this._posts = posts;
             });
     }

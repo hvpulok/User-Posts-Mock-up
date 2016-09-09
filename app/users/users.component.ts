@@ -17,9 +17,12 @@ export class UsersComponent implements OnInit{
 
     }
     private _users = [];
+    isLoading: boolean = true; //set isLoading to false to show loader icon
+
     ngOnInit(){
         this._usersService.getUsers()
             .subscribe(users=> {
+                this.isLoading =false;  //set isLoading to false to hide loader icon
                 // console.log(users);
                 this._users = users;
             } );

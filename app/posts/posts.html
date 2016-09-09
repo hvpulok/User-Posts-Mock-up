@@ -1,6 +1,9 @@
 <h1>User Posts Page</h1>
 <div class="row">
     <div class="col-md-6">
+        <div *ngIf="isLoading">
+            Getting data...<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+        </div>
         <div class="list-group" >
             <a href="#" class="list-group-item" *ngFor="#post of _posts">
                 {{post.title}}
