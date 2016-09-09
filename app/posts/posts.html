@@ -3,9 +3,24 @@
     <div class="col-md-6">
         <spinner *ngIf="isLoading"></spinner>
         <div class="list-group" >
-            <a href="#" class="list-group-item" *ngFor="#post of _posts">
-                {{post.title}}
+            <a
+                class="list-group-item"
+                *ngFor="#post of _posts"
+                (click)="showDetails(post)"
+                [ngClass]="{'active':((post.id == selectedPost.id) ? true : false)}"
+            >
+                    {{post.title}}
             </a>
+        </div>
+    </div>
+    <div class="col-md-6" *ngIf="selectedPost">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{selectedPost.title}}</h3>
+            </div>
+            <div class="panel-body">
+                {{selectedPost.body}}
+            </div>
         </div>
     </div>
 </div>

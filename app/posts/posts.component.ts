@@ -9,7 +9,8 @@ import {SpinnerComponent} from "../shared/spinner.component";
     selector: 'my-posts',
     templateUrl:"app/posts/posts.html",
     directives: [SpinnerComponent],
-    providers: [PostsService, HTTP_PROVIDERS]
+    providers: [PostsService, HTTP_PROVIDERS],
+
 })
 
 export class PostsComponent implements OnInit{
@@ -17,6 +18,7 @@ export class PostsComponent implements OnInit{
 
     // define a client side local array to hold retrieved posts
     private _posts = [];
+    private selectedPost = "";
     isLoading: boolean = true; //set isLoading to false to show loader icon
 
     ngOnInit(){
@@ -27,5 +29,12 @@ export class PostsComponent implements OnInit{
                 this._posts = posts;
             });
     }
+
+    showDetails(post){
+        // console.log(post.title);
+        // store the selected post in local variable
+        this.selectedPost = post;
+    }
+
 }
 
