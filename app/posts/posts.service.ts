@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 export class PostsService{
     //definition of URL from which fake user posts will be retrieved
     private _url: string = "https://jsonplaceholder.typicode.com/posts";
-    // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
-    private _CommentUrl: string = "";
+    private _commentUrl: string = "";
+    private _selectedUserPostsUrl: string = "";
 
     // define http service constructor
     constructor(private _http:Http){}
@@ -19,8 +19,16 @@ export class PostsService{
     }
 
     getAllRelatedComments(postID){
-        this._CommentUrl = "https://jsonplaceholder.typicode.com/posts/"+postID+"/comments";
-        return this._http.get(this._CommentUrl)
+        // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
+        this._commentUrl = "https://jsonplaceholder.typicode.com/posts/"+postID+"/comments";
+        return this._http.get(this._commentUrl)
+            .map(res=> res.json());
+    }
+
+    getSelectedUsersPosts(userId){
+        // https://jsonplaceholder.typicode.com/posts?userId=1
+        this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId="+userId;
+        return this._http.get(this._selectedUserPostsUrl)
             .map(res=> res.json());
     }
 }

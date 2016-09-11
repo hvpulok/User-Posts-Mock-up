@@ -3,21 +3,25 @@ import {Component, OnInit} from "angular2/core";
 import {PostsService} from "./posts.service";
 import {HTTP_PROVIDERS} from "angular2/http";
 import {SpinnerComponent} from "../shared/spinner.component";
+import {UsersService} from "../users/users.service";
 
 
 @Component({
     selector: 'my-posts',
     templateUrl:"app/posts/posts.html",
     directives: [SpinnerComponent],
-    providers: [PostsService, HTTP_PROVIDERS],
+    providers: [PostsService, UsersService, HTTP_PROVIDERS],
 
 })
 
 export class PostsComponent implements OnInit{
-    constructor(private _postsService: PostsService){}
+    constructor(private _postsService: PostsService,
+                private _usersService:UsersService
+                ){}
 
     // define a client side local array to hold retrieved posts
     private _posts = [];
+    private _users = [];
     private selectedPost: any = "";
     private _relatedComments = "";
 
@@ -30,10 +34,14 @@ export class PostsComponent implements OnInit{
                 // console.log(posts);
                 this._posts = posts;
             });
+
+        this._usersService.getUsers()
+            .subscribe(users =>{
+                this._users = users;
+            })
     }
 
     showDetails(post){
-        // console.log(post.title);
         // store the selected post in local variable
         this.selectedPost = post;
         //get all related comments
@@ -43,5 +51,16 @@ export class PostsComponent implements OnInit{
                 this._relatedComments = comments;
             });
     }
+
+    showSelectedUsersPosts(filter){
+        this._posts= null;
+        this.isPostsLoading= true;
+        this._postsService.getSelectedUsersPosts(filter.userId)
+            .subscribe(posts =>{
+                this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
+                this._posts = posts;
+            });
+    }
+
 }
 

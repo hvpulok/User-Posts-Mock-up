@@ -28,8 +28,8 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
                     this._http = _http;
                     //definition of URL from which fake user posts will be retrieved
                     this._url = "https://jsonplaceholder.typicode.com/posts";
-                    // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
-                    this._CommentUrl = "";
+                    this._commentUrl = "";
+                    this._selectedUserPostsUrl = "";
                 }
                 //define method to get posts from server
                 PostsService.prototype.getAllPosts = function () {
@@ -37,8 +37,15 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
                         .map(function (res) { return res.json(); });
                 };
                 PostsService.prototype.getAllRelatedComments = function (postID) {
-                    this._CommentUrl = "https://jsonplaceholder.typicode.com/posts/" + postID + "/comments";
-                    return this._http.get(this._CommentUrl)
+                    // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
+                    this._commentUrl = "https://jsonplaceholder.typicode.com/posts/" + postID + "/comments";
+                    return this._http.get(this._commentUrl)
+                        .map(function (res) { return res.json(); });
+                };
+                PostsService.prototype.getSelectedUsersPosts = function (userId) {
+                    // https://jsonplaceholder.typicode.com/posts?userId=1
+                    this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId=" + userId;
+                    return this._http.get(this._selectedUserPostsUrl)
                         .map(function (res) { return res.json(); });
                 };
                 PostsService = __decorate([
