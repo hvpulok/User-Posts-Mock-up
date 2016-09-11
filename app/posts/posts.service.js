@@ -32,20 +32,28 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
                     this._selectedUserPostsUrl = "";
                 }
                 //define method to get posts from server
-                PostsService.prototype.getAllPosts = function () {
-                    return this._http.get(this._url)
-                        .map(function (res) { return res.json(); });
+                PostsService.prototype.getPosts = function (filter) {
+                    if (filter) {
+                        if (filter.userId == "all") {
+                            return this._http.get(this._url)
+                                .map(function (res) { return res.json(); });
+                        }
+                        else if (filter.userId != "9999") {
+                            // https://jsonplaceholder.typicode.com/posts?userId=1
+                            this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId=" + filter.userId;
+                            return this._http.get(this._selectedUserPostsUrl)
+                                .map(function (res) { return res.json(); });
+                        }
+                    }
+                    else {
+                        return this._http.get(this._url)
+                            .map(function (res) { return res.json(); });
+                    }
                 };
                 PostsService.prototype.getAllRelatedComments = function (postID) {
                     // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
                     this._commentUrl = "https://jsonplaceholder.typicode.com/posts/" + postID + "/comments";
                     return this._http.get(this._commentUrl)
-                        .map(function (res) { return res.json(); });
-                };
-                PostsService.prototype.getSelectedUsersPosts = function (userId) {
-                    // https://jsonplaceholder.typicode.com/posts?userId=1
-                    this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId=" + userId;
-                    return this._http.get(this._selectedUserPostsUrl)
                         .map(function (res) { return res.json(); });
                 };
                 PostsService = __decorate([

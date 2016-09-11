@@ -28,17 +28,22 @@ export class PostsComponent implements OnInit{
     isPostsLoading: boolean = true; //set isPostsLoading to false to show loader icon
     isCommentLoading:boolean= true;
     ngOnInit(){
-        this._postsService.getAllPosts()
-            .subscribe(posts =>{
-                this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
-                // console.log(posts);
-                this._posts = posts;
-            });
+        this.loadPosts();
 
         this._usersService.getUsers()
             .subscribe(users =>{
                 this._users = users;
             })
+    }
+
+    loadPosts(filter?){
+        this._posts= null;
+        this.isPostsLoading= true;
+        this._postsService.getPosts(filter)
+            .subscribe(posts =>{
+                this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
+                this._posts = posts;
+            });
     }
 
     showDetails(post){
@@ -53,13 +58,7 @@ export class PostsComponent implements OnInit{
     }
 
     showSelectedUsersPosts(filter){
-        this._posts= null;
-        this.isPostsLoading= true;
-        this._postsService.getSelectedUsersPosts(filter.userId)
-            .subscribe(posts =>{
-                this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
-                this._posts = posts;
-            });
+        this.loadPosts(filter);
     }
 
 }
