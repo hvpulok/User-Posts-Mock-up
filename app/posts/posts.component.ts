@@ -18,13 +18,15 @@ export class PostsComponent implements OnInit{
 
     // define a client side local array to hold retrieved posts
     private _posts = [];
-    private selectedPost = "";
-    isLoading: boolean = true; //set isLoading to false to show loader icon
+    private selectedPost: any = "";
+    private _relatedComments = "";
 
+    isPostsLoading: boolean = true; //set isPostsLoading to false to show loader icon
+    isCommentLoading:boolean= true;
     ngOnInit(){
         this._postsService.getAllPosts()
             .subscribe(posts =>{
-                this.isLoading =false;  //set isLoading to false to hide loader icon
+                this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
                 // console.log(posts);
                 this._posts = posts;
             });
@@ -34,7 +36,12 @@ export class PostsComponent implements OnInit{
         // console.log(post.title);
         // store the selected post in local variable
         this.selectedPost = post;
+        //get all related comments
+        this._postsService.getAllRelatedComments(this.selectedPost.id)
+            .subscribe(comments =>{
+                this.isCommentLoading =false;  //set isPostsLoading to false to hide loader icon
+                this._relatedComments = comments;
+            });
     }
-
 }
 

@@ -28,10 +28,17 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
                     this._http = _http;
                     //definition of URL from which fake user posts will be retrieved
                     this._url = "https://jsonplaceholder.typicode.com/posts";
+                    // commentUrl = "https://jsonplaceholder.typicode.com/posts/:postID/comments";
+                    this._CommentUrl = "";
                 }
                 //define method to get posts from server
                 PostsService.prototype.getAllPosts = function () {
                     return this._http.get(this._url)
+                        .map(function (res) { return res.json(); });
+                };
+                PostsService.prototype.getAllRelatedComments = function (postID) {
+                    this._CommentUrl = "https://jsonplaceholder.typicode.com/posts/" + postID + "/comments";
+                    return this._http.get(this._CommentUrl)
                         .map(function (res) { return res.json(); });
                 };
                 PostsService = __decorate([

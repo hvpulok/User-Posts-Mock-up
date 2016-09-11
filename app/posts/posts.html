@@ -1,7 +1,7 @@
 <h1>User Posts Page</h1>
 <div class="row">
     <div class="col-md-6">
-        <spinner *ngIf="isLoading"></spinner>
+        <spinner *ngIf="isPostsLoading"></spinner>
         <div class="list-group" >
             <a
                 class="list-group-item"
@@ -20,6 +20,26 @@
             </div>
             <div class="panel-body">
                 {{selectedPost.body}}
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Comments</h3>
+            </div>
+            <spinner *ngIf="isCommentLoading"></spinner>
+            <div class="panel-body" *ngIf="_relatedComments">
+                <div class="media" *ngFor="#comment of _relatedComments">
+                    <div class="media-left">
+                        <a href="#">
+                            <img width="48" height="48" class="media-object" src="https://en.opensuse.org/images/0/0b/Icon-user.png" alt="user icon">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{comment.name}}</h4>
+                        {{comment.body}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
