@@ -34,11 +34,11 @@ System.register(["angular2/core", "angular2/http", 'rxjs/add/operator/map'], fun
                 //define method to get posts from server
                 PostsService.prototype.getPosts = function (filter) {
                     if (filter) {
-                        if (filter.userId == "all") {
+                        if (filter.userId === "all") {
                             return this._http.get(this._url)
                                 .map(function (res) { return res.json(); });
                         }
-                        else if (filter.userId != "9999") {
+                        else {
                             // https://jsonplaceholder.typicode.com/posts?userId=1
                             this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId=" + filter.userId;
                             return this._http.get(this._selectedUserPostsUrl)

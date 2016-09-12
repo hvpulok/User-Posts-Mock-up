@@ -15,7 +15,7 @@
 
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Filter Size</span>
-            <select class="form-control" (change)="updatePaginationFilterSize({PaginationFilterSize: u.value})" #u>
+            <select class="form-control" (change)="updatePaginationFilterSize({PaginationFilterSize: paginationFilter.value})" #paginationFilter>
                 <option value=10 >10</option>
                 <option value=20 >20</option>
                 <option value=50 >50</option>

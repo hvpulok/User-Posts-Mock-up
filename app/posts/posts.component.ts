@@ -64,8 +64,6 @@ export class PostsComponent implements OnInit{
     }
 
     updatePaginationFilterSize(Filter){
-        console.log(Filter);
-        console.log(Filter.PaginationFilterSize);
         this._pageSize = Filter.PaginationFilterSize;
         this.updateCurrentPage();
     }

@@ -15,11 +15,11 @@ export class PostsService{
     //define method to get posts from server
     getPosts(filter?){
         if(filter){
-            if(filter.userId == "all"){
+            if(filter.userId === "all"){
                 return this._http.get(this._url)
                     .map(res=> res.json());
             }
-            else if(filter.userId!= "9999"){
+            else {
                 // https://jsonplaceholder.typicode.com/posts?userId=1
                 this._selectedUserPostsUrl = "https://jsonplaceholder.typicode.com/posts?userId="+filter.userId;
                 return this._http.get(this._selectedUserPostsUrl)
