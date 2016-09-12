@@ -24,6 +24,11 @@ export class PostsComponent implements OnInit{
     private _users = [];
     private selectedPost: any = "";
     private _relatedComments = "";
+    private _pagination;
+    private _paginatedPosts = [];
+    private _pageNumbers = [];
+    private _selectedPageNumber = 1;
+    private _pageSize = 10;
 
     isPostsLoading: boolean = true; //set isPostsLoading to false to show loader icon
     isCommentLoading:boolean= true;
@@ -38,12 +43,60 @@ export class PostsComponent implements OnInit{
 
     loadPosts(filter?){
         this._posts= null;
+        this._paginatedPosts= null;
         this.isPostsLoading= true;
         this._postsService.getPosts(filter)
             .subscribe(posts =>{
                 this.isPostsLoading =false;  //set isPostsLoading to false to hide loader icon
                 this._posts = posts;
+                this.updateCurrentPage();
             });
+    }
+
+    updateCurrentPage(selectedPageNumber?){
+        this._selectedPageNumber = 1;
+        if(selectedPageNumber)
+            this._selectedPageNumber = selectedPageNumber;
+
+        this._pagination = this.paginate(this._posts, this._pageSize, this._selectedPageNumber);
+        this. _paginatedPosts = this._pagination.paginatedPosts;
+        this. _pageNumbers = this._pagination.pageNumbers;
+    }
+
+    updatePaginationFilterSize(Filter){
+        console.log(Filter);
+        console.log(Filter.PaginationFilterSize);
+        this._pageSize = Filter.PaginationFilterSize;
+        this.updateCurrentPage();
+    }
+
+    paginate(allPosts, pageSize? : any, currentPage?: number){
+        var totalPostsCount : number = allPosts.length;
+        if(!pageSize)
+            pageSize =10;
+        else if(pageSize==="all")
+            pageSize = totalPostsCount;
+
+        if(!currentPage)
+            currentPage =1;
+
+        var requiredPageCount: number = Math.ceil(totalPostsCount/pageSize);
+        var pageStartIndex = (currentPage-1)*pageSize;
+        var pageEndIndex = (currentPage * pageSize);
+        var paginatedPosts = allPosts.slice(pageStartIndex, pageEndIndex)
+        var pageNumbers :number[] = [];
+        for (var i=1; i<=requiredPageCount; i++){
+            pageNumbers.push(i);
+        }
+        return {
+            totalPostsCount : totalPostsCount,
+            pageSize : pageSize,
+            requiredPageCount : requiredPageCount,
+            pageStartIndex: pageStartIndex,
+            pageEndIndex : pageEndIndex,
+            pageNumbers: pageNumbers,
+            paginatedPosts : paginatedPosts
+        }
     }
 
     showDetails(post){
